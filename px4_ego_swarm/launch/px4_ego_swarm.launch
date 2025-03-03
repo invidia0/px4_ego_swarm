@@ -1,0 +1,36 @@
+  <launch>
+    <arg name="map_size_x" value="42.0"/>
+    <arg name="map_size_y" value="30.0"/>
+    <arg name="map_size_z" value=" 5.0"/>
+    <arg name="vehicle_name" value="uvify"/>
+
+    <!-- Bringup the PX4 SITL -->
+    <!-- <include file="$(find uvify_sitl)/launch/sim_bringup.launch">
+        <arg name="debug" value="false"/>
+        <arg name="verbose" value="true"/>
+        <arg name="paused" value="false"/>
+        <arg name="vehicle_name" value="uvify"/>
+        <arg name="ID" value="0"/>
+        <arg name="group" value="false"/>
+    </include> -->
+
+    <include file="$(find px4_ego_swarm)/launch/single_instance.launch">
+        <arg name="drone_id" value="0"/>
+
+        <!-- <arg name="init_x" value="-20.0"/>
+        <arg name="init_y" value="-9.0"/>
+         <arg name="init_z" value="0.1"/>
+
+        <arg name="target_x" value="20.0"/>
+        <arg name="target_y" value="9.0"/>
+        <arg name="target_z" value="1"/>
+
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/> -->
+        <arg name="odometry_topic" value="/uvify0/mavros/local_position/odom"/>
+        <arg name="camera_pose_topic" value="uvify0/camera/pose"/>
+        <arg name="depth_topic" value="uvify0/camera/depth/image_raw"/>
+        <arg name="cloud_topic" value="uvify0/camera/depth/color/points"/>
+    </include>    
+  </launch>
